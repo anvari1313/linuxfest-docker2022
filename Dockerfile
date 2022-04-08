@@ -1,4 +1,4 @@
-FROM golang:1.18
+FROM golang:1.18 AS build
 
 WORKDIR /src
 
@@ -8,6 +8,12 @@ RUN go mod download
 
 COPY main.go ./
 
-RUN go build . -o app
+RUN go build .
 
-CMD ["./app"]
+FROM ubuntu:20.04
+
+WORKDIR /app
+
+COPY --from=build ./
+
+CMD ["./linuxfest-docker2022"]
