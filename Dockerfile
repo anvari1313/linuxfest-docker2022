@@ -14,6 +14,6 @@ FROM ubuntu:20.04
 
 WORKDIR /app
 
-COPY --from=build ./
+COPY --from=build /src/linuxfest-docker2022 ./
 
 CMD ["./linuxfest-docker2022"]
